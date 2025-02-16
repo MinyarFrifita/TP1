@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Todo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        #todoForm {
+            margin-bottom: 20px;
+        }
+        input, textarea {
+            display: block;
+            margin: 5px 0;
+            padding: 8px;
+            width: 300px;
+        }
+        button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f3f3f3;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Gestionnaire de Todo</h2>
+    <form id="todoForm">
+        <input type="text" id="name" placeholder="Nom" required>
+        <textarea id="content" placeholder="Contenu" required></textarea>
+        <button type="submit">Ajouter Todo</button>
+    </form>
+    <ul id="todoList"></ul>
+    
+    <script>
+        document.getElementById("todoForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            ajouterTodo();
+        });
+
+        function ajouterTodo() {
+            let name = document.getElementById("name").value.trim();
+            let content = document.getElementById("content").value.trim();
+            
+            if (name && content) {
+                let li = document.createElement("li");
+                li.textContent = `${name}: ${content}`;
+                document.getElementById("todoList").appendChild(li);
+                document.getElementById("todoForm").reset();
+            }
+        }
+    </script>
+</body>
+</html>
